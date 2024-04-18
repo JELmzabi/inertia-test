@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    ## Relationships 
+    function photos()  {
+        return $this->belongsTo(Photo::class, 'user_id', 'id');
+    }
 }
