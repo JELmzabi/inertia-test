@@ -9,7 +9,7 @@ class PhotoController extends Controller
 {
 
     function index()  {
-        return Inertia::render('Photos/photoList');
+        return Inertia::render('Photos/PhotoList');
     }
 
     function store(Request $request) {
