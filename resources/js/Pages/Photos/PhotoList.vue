@@ -6,7 +6,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { ref } from 'vue';
 
-defineProps({ errors: Object })
+defineProps({ errors: Object, photos: Array })
 
 const isUploadModalOpen = ref(false);
 const form = useForm({
@@ -45,11 +45,7 @@ const closeUploadModal = () => {
                 </PrimaryButton>
             </div>
             <div class=" grid grid-cols-3 gap-8">
-                <PhotoItem />
-                <PhotoItem />
-                <PhotoItem />
-                <PhotoItem />
-                <PhotoItem />
+                <PhotoItem v-for="photo in photos" :img-src="photo.imgSrc" :author="photo.user.name" :title="photo.title" :posted_since="photo.postedAgo"/>
             </div>
         </div>
 

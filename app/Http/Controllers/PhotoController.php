@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UploadPhotoRequest;
+use App\Http\Resources\PhotoResource;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,12 @@ class PhotoController extends Controller
 {
 
     function index()  {
-        return Inertia::render('Photos/PhotoList');
+
+        $photos = Photo::with('user')->first();
+        dd(PhotoResource($photos));
+        $p = PhotoResource::collection($photos);
+
+        return Inertia::render('Photos/PhotoList', ['photos' => $p]);
     }
 
     function store(UploadPhotoRequest $request) {
