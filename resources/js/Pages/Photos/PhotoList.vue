@@ -15,7 +15,6 @@ const form = useForm({
                   public: true
                 });
 
-console.log(form);
 const openUploadModal = () => {
     isUploadModalOpen.value = true;
 };
@@ -45,7 +44,9 @@ const closeUploadModal = () => {
                 </PrimaryButton>
             </div>
             <div class=" grid grid-cols-3 gap-8">
-                <PhotoItem v-for="photo in photos" :img-src="photo.imgSrc" :author="photo.user.name" :title="photo.title" :posted_since="photo.postedAgo"/>
+                <template v-if="photos">
+                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user.name" :title="photo.title" :posted_since="photo.posted_ago" />
+                </template>
             </div>
         </div>
 
