@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UploadPhotoRequest;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class PhotoController extends Controller
@@ -13,9 +16,21 @@ class PhotoController extends Controller
         return Inertia::render('Photos/PhotoList');
     }
 
-    function store(Request $request) {
-        $request->file('photo')->store('/', 'photos');
-        dd($request);
+    function store(UploadPhotoRequest $request) {
+        $file = $request->file('photo');
+        $path = $request->file('photo')->store(options:'photos');
+        
+        $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+        Auth::user()->photos()->create([
+            'name' => $fileName,
+            'title' => $request->title,
+            'path' => $path,
+            'public' => $request->public
+        ]);
+
+        return to_route('photos.index');
+        
     }
     
 }

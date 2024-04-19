@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     ## Relationships 
     function photos()  {
-        return $this->belongsTo(Photo::class, 'user_id', 'id');
+        return $this->hasMany(Photo::class, 'user_id', 'id');
     }
 }
