@@ -16,7 +16,7 @@ class PhotoController extends Controller
 
     function index()  {
 
-        $photos = Photo::with('user')->get();
+        $photos = Photo::with('user')->where('public', true)->get();
         $p = PhotoResource::collection($photos);
         // dd($p);
         return Inertia::render('Photos/PhotoList', ['photos' => $p]);
