@@ -6,6 +6,7 @@ use App\Http\Requests\UploadPhotoRequest;
 use App\Http\Resources\PhotoResource;
 use App\Models\Photo;
 use App\Models\User;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -40,7 +41,10 @@ class PhotoController extends Controller
     }
 
     public function myPhotos(){
-        $photos = PhotoResource::collection(Auth::user()->photos);
+        $photos = PhotoResource::collection(Photo::with(['user' => function ($query) {
+            $query->where('id', Auth::id());
+        }])->get());
+        
         return Inertia::render('Photos/MyPhotos', compact('photos'));
     }
     

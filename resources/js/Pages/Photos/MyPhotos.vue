@@ -18,7 +18,7 @@ defineProps({ photos: Array })
         <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" grid grid-cols-3 gap-8">
                 <template v-if="photos">
-                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="$page.props.auth.user.name" :title="photo.title" :posted_since="photo.posted_ago" />
+                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user.name" :title="photo.title" :posted_since="photo.posted_ago" />
                 </template>
             </div>
         </div>
