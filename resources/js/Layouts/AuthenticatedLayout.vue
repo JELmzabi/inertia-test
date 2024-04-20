@@ -36,6 +36,10 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('photos.index')" :active="route().current('photos.index')">
                                     Feed
                                 </NavLink>
+
+                                <NavLink :href="route('photos.myphotos')" :active="route().current('photos.myphotos')">
+                                    My Photos
+                                </NavLink>
                             </div>
                         </div>
 
@@ -122,6 +126,10 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('photos.index')" :active="route().current('photos.index')">
                             Feed
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('photos.myphotos')" :active="route().current('photos.myphotos')">
+                            My Photos
+                        </ResponsiveNavLink>
+                        
                     </div>
 
                     <!-- Responsive Settings Options -->

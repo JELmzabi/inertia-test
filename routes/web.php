@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 
     ### Feed routes
     Route::resource('photos', PhotoController::class);
+    Route::get('myphotos', [PhotoController::class, 'myPhotos'])->name('photos.myphotos');
     
 });
 

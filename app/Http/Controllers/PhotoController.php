@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UploadPhotoRequest;
 use App\Http\Resources\PhotoResource;
 use App\Models\Photo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -36,6 +37,11 @@ class PhotoController extends Controller
 
         return to_route('photos.index');
         
+    }
+
+    public function myPhotos(){
+        $photos = PhotoResource::collection(Auth::user()->photos);
+        return Inertia::render('Photos/MyPhotos', compact('photos'));
     }
     
 }
