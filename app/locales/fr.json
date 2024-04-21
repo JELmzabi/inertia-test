@@ -1,0 +1,17 @@
+{
+    "dashboard": "tableau de bord",
+    "feed": "flux",
+    "my photos": "mes photos",
+    "add photo": "ajouter une photo",
+    "photo": "photo",
+    "profile": "profil",
+    "logout": "déconnexion",
+    "this information will be displayed publicly so be careful what you share.": "Ces informations seront affichées publiquement, alors faites attention à ce que vous partagez.",
+    "upload a file": "téléverser un fichier",
+    "or drag and drop": "ou glisser-déposer",
+    "PNG, JPG, GIF up to 10MB": "PNG, JPG, GIF jusqu'à 10 Mo",
+    "title": "titre",
+    "share with all": "partager avec tous",
+    "cancel": "annuler",
+    "save": "enregistrer"
+}

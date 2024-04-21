@@ -1,0 +1,17 @@
+{
+    "dashboard": "لوحة القيادة",
+    "feed": "تغذية الأخبار",
+    "my photos": "صوري",
+    "add photo": "إضافة صورة",
+    "photo": "صورة",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "This information will be displayed publicly so be careful what you share.": "سيتم عرض هذه المعلومات علناً، لذا كن حذرًا في ما تشاركه.",
+    "upload a file": "تحميل ملف",
+    "or drag and drop": "أو سحب وإسقاط",
+    "PNG, JPG, GIF up to 10MB": "PNG، JPG، GIF بحجم يصل إلى 10 ميغابايت",
+    "title": "العنوان",
+    "share with all": "مشاركة مع الجميع",
+    "cancel": "إلغاء",
+    "save": "حفظ"
+}

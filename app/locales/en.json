@@ -1,0 +1,17 @@
+{
+    "dashboard" : "dashboard",
+    "feed" : "feed",
+    "my photos" : "my photos",
+    "add photo" : "add photo",
+    "photo" : "photo",
+    "profile" : "profile",
+    "logout" : "logout",
+    "This information will be displayed publicly so be careful what you share.": "This information will be displayed publicly so be careful what you share.",
+    "upload a file": "upload a file",
+    "or drag and drop": "or drag and drop",
+    "PNG, JPG, GIF up to 10MB": "PNG, JPG, GIF up to 10MB",
+    "title": "title",
+    "share with all": "share with all",
+    "cancel": "cancel",
+    "save": "save"
+}

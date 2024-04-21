@@ -6,7 +6,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Modal from '@/Components/Modal.vue';
 import { ref } from 'vue';
 
-defineProps({ errors: Object, photos: Array })
+defineProps({ errors: Object, photos: Array, localeData: Object })
 
 const isUploadModalOpen = ref(false);
 const form = useForm({
@@ -30,7 +30,7 @@ const closeUploadModal = () => {
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Photo</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ localeData['data']['photo'] }}</h2>
         </template>
 
         <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -40,7 +40,7 @@ const closeUploadModal = () => {
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
 
-                    Add Photo
+                    {{ localeData['data']['add photo'] }}
                 </PrimaryButton>
             </div>
             <div class=" grid grid-cols-3 gap-8">
@@ -55,12 +55,12 @@ const closeUploadModal = () => {
                 <form @submit.prevent="form.post('/photos')">
                   <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
-                      <h2 class="text-base font-semibold leading-7 text-gray-900">Profile</h2>
-                      <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+                      <h2 class="text-base font-semibold leading-7 text-gray-900">{{localeData['data']['Profile']}}</h2>
+                      <p class="mt-1 text-sm leading-6 text-gray-600">{{ localeData['data']['this information will be displayed publicly so be careful what you share.'] }}</p>
 
                       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div class="col-span-full">
-                          <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
+                          <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">{{ localeData['data']['Photo'] }}</label>
                           <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10" :class="{'border-red-300': errors.photo}">
                             <div class="text-center">
                               <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -68,12 +68,12 @@ const closeUploadModal = () => {
                               </svg>
                               <div class="mt-4 flex text-sm leading-6 text-gray-600">
                                 <label for="photo" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                  <span>Upload a file</span>
+                                  <span>{{ localeData['data']['upload a file'] }}</span>
                                   <input id="photo" name="photo" type="file" @input="form.photo = $event.target.files[0]" class="sr-only">
                                 </label>
-                                <p class="pl-1">or drag and drop</p>
+                                <p class="pl-1">{{ localeData['data']['or drag and drop'] }}</p>
                               </div>
-                              <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                              <p class="text-xs leading-5 text-gray-600">{{ localeData['data']['PNG, JPG, GIF up to 10MB'] }}</p>
                             </div>
                           </div>
                         </div>
@@ -83,7 +83,7 @@ const closeUploadModal = () => {
 
                     <div class="">
                         <div class="sm:col-span-8">
-                          <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+                          <label for="title" class="block text-sm font-medium leading-6 text-gray-900">{{ localeData['data']['title'] }}</label>
                           <div class="mt-2">
                             <input type="text" name="title" id="title" v-model="form.title" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" :class="{'ring-red-300': errors.title}">
                             <p v-if="errors.title" class="text-red-500 mt-2 sm:text-sm sm:leading-6">{{ errors.title }}</p>
@@ -95,14 +95,14 @@ const closeUploadModal = () => {
                       <label class="inline-flex items-center mb-5 cursor-pointer">
                         <input type="checkbox" v-model="form.public" class="sr-only peer">
                         <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Share with all</span>
+                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ localeData['data']['share with all'] }}</span>
                       </label>
                     </div>
                   </div>
 
                   <div class="mt-6 flex items-center justify-end gap-x-6">
-                    <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="closeUploadModal">Cancel</button>
-                    <PrimaryButton type="submit">Save</PrimaryButton>
+                    <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="closeUploadModal">{{ localeData['data']['cancel'] }}</button>
+                    <PrimaryButton type="submit">{{ localeData['data']['save'] }}</PrimaryButton>
                   </div>
                 </form>
             </div>

@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\SetLocaleMiddleware;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 /*
@@ -40,5 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::get('myphotos', [PhotoController::class, 'myPhotos'])->name('photos.myphotos');
     
 });
+
+Route::get('lang/{code}', function(Request $request) {
+    $lang = $request->code;
+    Session::put('locale', $lang);
+    return back();
+})->name('lang');
 
 require __DIR__.'/auth.php';
