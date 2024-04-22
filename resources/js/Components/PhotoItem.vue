@@ -1,5 +1,11 @@
 <script setup>
-defineProps(['path', 'title', 'tags', 'author', 'posted_since'])
+import {ref, watch} from 'vue'
+defineProps(['path', 'title', 'tags', 'author', 'posted_since']);
+
+const userId = ref(null);
+watch(userId, () => {
+    console.log(userId);
+});
 </script>
 
 <template>
@@ -14,7 +20,7 @@ defineProps(['path', 'title', 'tags', 'author', 'posted_since'])
             <li class="px-2 rounded bg-blue-100" v-for="tag in tags" :key="tag">{{ tag }}</li>
         </ul> -->
         <div class="flex justify-between">
-            <p class="underline">{{ author }}</p>
+            <p class="underline" @click="userId.value = author.id">{{ author.name }}</p>
             <p>{{ posted_since }}</p>
         </div>
     </div>

@@ -1,13 +1,15 @@
 <script setup>
 import PhotoItem from '@/Components/PhotoItem.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import UserTooltip from '@/Components/UserTooltip.vue';
 import Modal from '@/Components/Modal.vue';
 import { ref } from 'vue';
 
 defineProps({ errors: Object, photos: Array })
 
+const userId = ref(null);
 const isUploadModalOpen = ref(false);
 const form = useForm({
                   photo: null,
@@ -45,9 +47,11 @@ const closeUploadModal = () => {
             </div>
             <div class=" grid grid-cols-3 gap-8">
                 <template v-if="photos">
-                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user.name" :title="photo.title" :posted_since="photo.posted_ago" />
+                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user" :title="photo.title" :posted_since="photo.posted_ago" />
                 </template>
             </div>
+
+            <!-- <UserTooltip /> -->
         </div>
 
         <Modal :show="isUploadModalOpen" @close="closeUploadModal">
