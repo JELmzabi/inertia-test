@@ -41,9 +41,7 @@ class PhotoController extends Controller
     }
 
     public function myPhotos(){
-        $photos = PhotoResource::collection(Photo::with(['user' => function ($query) {
-            $query->where('id', Auth::id());
-        }])->get());
+        $photos = PhotoResource::collection(Photo::where('user_id', Auth::id())->get());
         
         return Inertia::render('Photos/MyPhotos', compact('photos'));
     }
