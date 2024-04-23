@@ -7,6 +7,10 @@ use App\Models\User;
 class UserController extends Controller
 {
     function getUser(User $user) {
-        return response()->json($user);
+        $followersCount = $user->followers()->count();
+        return response()->json([
+            'user' => $user,
+            'followersCount' => $followersCount
+        ]);
     }
 }

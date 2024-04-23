@@ -48,4 +48,8 @@ class User extends Authenticatable
     function photos()  {
         return $this->hasMany(Photo::class, 'user_id', 'id');
     }
+
+    function followers() {
+        return $this->belongsToMany(self::class, 'followers', 'user_id', 'follower_id', 'id', 'id');
+    }
 }

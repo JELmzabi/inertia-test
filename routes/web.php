@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -48,3 +49,5 @@ require __DIR__.'/auth.php';
 
 // Test
 Route::get('/getuser/{user}', [UserController::class, 'getUser'])->name('getUser');
+
+Route::post('/follow', [FollowerController::class, 'follow'])->name('follow');

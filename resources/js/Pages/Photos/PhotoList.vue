@@ -42,7 +42,7 @@ const fetchUser = async (userId, photoId) => {
 
         <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-8 flex justify-end">
-                <PrimaryButton @click="openUploadModal">
+                <PrimaryButton @click="openUploadModal"  >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 me-2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>

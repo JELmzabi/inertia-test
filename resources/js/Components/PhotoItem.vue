@@ -17,7 +17,7 @@ defineProps(['id', 'path', 'title', 'tags', 'author', 'posted_since', 'user', 'f
         </ul> -->
         <div class="flex justify-between relative">
             <p class="underline cursor-pointer" @click="fetchUser(author.id, id)">{{ author.name }}</p>
-            <UserTooltip :user class="-top-24" v-if="user.photoId == id"/>
+            <UserTooltip :user class="-top-24"  v-if="user.photoId == id"/>
             <p>{{ posted_since }}</p>
         </div>
     </div>
