@@ -2,11 +2,8 @@
 
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocaleMiddleware;
->>>>>>> Stashed changes
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -50,4 +47,4 @@ require __DIR__.'/auth.php';
 
 
 // Test
-Route::get('/getuser/{user}', [UserController::class, 'getUser']);
+Route::get('/getuser/{user}', [UserController::class, 'getUser'])->name('getUser');

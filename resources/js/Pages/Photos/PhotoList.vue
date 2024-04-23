@@ -1,15 +1,14 @@
 <script setup>
 import PhotoItem from '@/Components/PhotoItem.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, router, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import UserTooltip from '@/Components/UserTooltip.vue';
 import Modal from '@/Components/Modal.vue';
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
 
 defineProps({ errors: Object, photos: Array })
 
-const userId = ref(null);
+
 const isUploadModalOpen = ref(false);
 const form = useForm({
                   photo: null,
@@ -25,6 +24,12 @@ const closeUploadModal = () => {
     isUploadModalOpen.value = false;
 };
 
+const user = ref({});
+const fetchUser = async (userId, photoId) => {
+    const response = await axios.get(route('getUser', userId));
+    user.value = response.data;
+    user.value.photoId = photoId;
+}
 </script>
 
 <template>
@@ -47,7 +52,7 @@ const closeUploadModal = () => {
             </div>
             <div class=" grid grid-cols-3 gap-8">
                 <template v-if="photos">
-                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user" :title="photo.title" :posted_since="photo.posted_ago" />
+                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user" :title="photo.title" :posted_since="photo.posted_ago" :user :fetchUser :key="photo.id" :id="photo.id"/>
                 </template>
             </div>
 
