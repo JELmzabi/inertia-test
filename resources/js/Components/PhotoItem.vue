@@ -1,6 +1,12 @@
 <script setup>
+import { ref, watch } from 'vue';
+import { vOnClickOutside } from '@vueuse/components';
 import UserTooltip from './UserTooltip.vue';
-defineProps(['id', 'path', 'title', 'tags', 'author', 'posted_since', 'user', 'fetchUser']);
+defineProps(['id', 'path', 'title', 'tags', 'author', 'posted_since']);
+
+const isTooltipVisible = ref(false);
+
+const closeUserTooltip = () => isTooltipVisible.value = false;
 
 </script>
 
@@ -16,8 +22,8 @@ defineProps(['id', 'path', 'title', 'tags', 'author', 'posted_since', 'user', 'f
             <li class="px-2 rounded bg-blue-100" v-for="tag in tags" :key="tag">{{ tag }}</li>
         </ul> -->
         <div class="flex justify-between relative">
-            <p class="underline cursor-pointer" @click="fetchUser(author.id, id)">{{ author.name }}</p>
-            <UserTooltip :user class="-top-24"  v-if="user.photoId == id"/>
+            <p class="underline cursor-pointer" @click="isTooltipVisible=true">{{ author.name }}</p>
+            <UserTooltip :user-id="author.id" class="-top-24" v-if="isTooltipVisible" v-on-click-outside="closeUserTooltip"/>
             <p>{{ posted_since }}</p>
         </div>
     </div>

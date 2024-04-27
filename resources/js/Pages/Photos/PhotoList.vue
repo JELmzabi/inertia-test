@@ -24,12 +24,6 @@ const closeUploadModal = () => {
     isUploadModalOpen.value = false;
 };
 
-const user = ref({});
-const fetchUser = async (userId, photoId) => {
-    const response = await axios.get(route('getUser', userId));
-    user.value = response.data;
-    user.value.photoId = photoId;
-}
 </script>
 
 <template>
@@ -52,7 +46,7 @@ const fetchUser = async (userId, photoId) => {
             </div>
             <div class=" grid grid-cols-3 gap-8">
                 <template v-if="photos">
-                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user" :title="photo.title" :posted_since="photo.posted_ago" :user :fetchUser :key="photo.id" :id="photo.id"/>
+                  <PhotoItem v-for="photo in photos" :path="photo.path" :author="photo.user" :title="photo.title" :posted_since="photo.posted_ago" :key="photo.id" :id="photo.id"/>
                 </template>
             </div>
 
