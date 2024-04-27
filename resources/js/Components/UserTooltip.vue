@@ -25,6 +25,11 @@ const followUser = async (id) => {
     user.value = response.data;
 }
 
+const unfollowUser = async (id) => {
+    const response = await axios.post(route('unfollow'), {following_id : id})
+    user.value = response.data;
+}
+
 </script>
 
 <template>
@@ -39,7 +44,10 @@ const followUser = async (id) => {
                 <p class="text-gray-400">{{ user.followersCount}} follower</p>
             </div>
             <!-- <PrimaryButton>follow</PrimaryButton> -->
-            <PrimaryButton @click="followUser(user.user.id)" v-if="user.user.id != page.props.auth.user.id">Follow</PrimaryButton>
+            <template v-if="user.user.id != page.props.auth.user.id">
+                <PrimaryButton @click="unfollowUser(user.user.id)" v-if="user.isFollowing">Unfollow</PrimaryButton>
+                <PrimaryButton @click="followUser(user.user.id)" v-else>Follow</PrimaryButton>
+            </template>
         </template>
     </div>
 </template>

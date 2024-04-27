@@ -51,3 +51,4 @@ require __DIR__.'/auth.php';
 Route::get('/getuser/{user}', [UserController::class, 'getUser'])->name('getUser');
 
 Route::post('/follow', [FollowerController::class, 'follow'])->name('follow');
+Route::post('/unfollow', [FollowerController::class, 'unfollow'])->name('unfollow');
