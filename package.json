@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@vueuse/components": "^10.9.0",
-        "@vueuse/core": "^10.9.0"
+        "@vueuse/core": "^10.9.0",
+        "snarkdown": "^2.0.0"
     }
 }
