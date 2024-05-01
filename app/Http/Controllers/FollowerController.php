@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\FollowEvent;
 use App\Models\User;
+use App\Notifications\FollowNotification;
+use App\Notifications\UnFollowNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +18,7 @@ class FollowerController extends Controller
         $followersCount = $following_user->followers()->count();
         $isAlreadyFollower = $following_user->followers()->where('follower_id', $request->user()->id)->exists();
 
-        FollowEvent::dispatch($request->user(), $following_user);
+        $request->user()->notify(new FollowNotification($following_user));
 
         return response()->json([
             'user' => $following_user,
@@ -32,7 +34,7 @@ class FollowerController extends Controller
         $followersCount = $following_user->followers()->count();
         $isAlreadyFollower = $following_user->followers()->where('follower_id', $request->user()->id)->exists();
 
-        FollowEvent::dispatch($request->user(), $following_user);
+        $request->user()->notify(new UnFollowNotification($following_user));
 
         return response()->json([
             'user' => $following_user,

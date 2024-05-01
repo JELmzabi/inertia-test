@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -52,3 +53,6 @@ Route::get('/getuser/{user}', [UserController::class, 'getUser'])->name('getUser
 
 Route::post('/follow', [FollowerController::class, 'follow'])->name('follow');
 Route::post('/unfollow', [FollowerController::class, 'unfollow'])->name('unfollow');
+
+## Notifications
+Route::get('/notifications', [NotificationController::class, 'index'])->name('getNotifications');
