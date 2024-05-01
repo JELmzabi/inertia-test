@@ -37,6 +37,6 @@ class FollowNotification extends Notification
      */
     public function toArray(object $notifiable)
     {
-        return "{$this->triggeredBy->name} starting following you";
+        return "*{$this->triggeredBy->name}* starting following you";
     }
 }
