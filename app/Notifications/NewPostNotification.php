@@ -2,19 +2,22 @@
 
 namespace App\Notifications;
 
+use App\Models\Photo;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class FollowNotification extends Notification
+class NewPostNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(private $triggeredBy)
+    public function __construct(private User $triggeredBy, private Photo $photo)
     {
         //
     }
@@ -29,22 +32,21 @@ class FollowNotification extends Notification
         return ['database'];
     }
 
-
     /**
      * Get the array representation of the notification.
      *
      * @return array<string, mixed>
      */
-    public function toArray(object $notifiable)
+    public function toArray(): Array
     {
         return [
-            "message" => "*{$this->triggeredBy->name}* starting following you",
-            // "to" => [
-            //     "route" => "photos.show",
-            //     "parameters" => [
-            //         $this->photo->id
-            //     ] 
-            // ]
+            "message" => "**{$this->triggeredBy->name}** _Post_ a new photo",
+            "to" => [
+                "route" => "photos.show",
+                "parameters" => [
+                    $this->photo->id
+                ] 
+            ]
         ];
     }
 }

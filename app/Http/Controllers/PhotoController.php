@@ -6,9 +6,11 @@ use App\Http\Requests\UploadPhotoRequest;
 use App\Http\Resources\PhotoResource;
 use App\Models\Photo;
 use App\Models\User;
+use App\Notifications\NewPostNotification;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -29,12 +31,15 @@ class PhotoController extends Controller
         
         $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
-        Auth::user()->photos()->create([
+        $createdPhoto = Auth::user()->photos()->create([
             'name' => $fileName,
             'title' => $request->title,
             'path' => $path,
             'public' => $request->public
         ]);
+
+        $usersShouldBeNotified = $request->user()->followers;
+        Notification::send($usersShouldBeNotified, new NewPostNotification($request->user(), $createdPhoto));
 
         return to_route('photos.index');
         

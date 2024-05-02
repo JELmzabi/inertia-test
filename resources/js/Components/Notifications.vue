@@ -8,7 +8,8 @@ const notifications = ref([]);
 
 onMounted(async () => {
     const response = await axios(route('getNotifications'));
-    notifications.value = response.data
+    notifications.value = response.data;
+
 })
 
 </script>
@@ -31,7 +32,7 @@ onMounted(async () => {
         <template #content>
             <div class="max-h-80 overflow-y-scroll">
                 <template v-if="notifications.length > 0">
-                    <NotificationItem v-for="notif of notifications" :title="notif.data" time="2 hr ago" :time-ago="notif.time_ago"
+                    <NotificationItem v-for="notif of notifications" :title="notif.data.message" time="2 hr ago" :time-ago="notif.time_ago" :action="notif.data.to"
                         :key="notif.id" />
                 </template>
                 <div v-else class="py-3 px-5 text-center text-slate-400 flex justify-center items-center space-x-3">

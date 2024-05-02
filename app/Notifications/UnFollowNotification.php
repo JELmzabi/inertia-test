@@ -37,6 +37,14 @@ class UnFollowNotification extends Notification
      */
     public function toArray(object $notifiable)
     {
-        return "{$this->triggeredBy->name}  unfollowing you";
+        return [
+            "message" => "{$this->triggeredBy->name}  unfollowing you",
+            // "to" => [
+            //     "route" => "photos.show",
+            //     "parameters" => [
+            //         $this->photo->id
+            //     ] 
+            // ]
+        ];
     }
 }
