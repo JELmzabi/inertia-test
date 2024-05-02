@@ -45,5 +45,10 @@ class PhotoController extends Controller
         
         return Inertia::render('Photos/MyPhotos', compact('photos'));
     }
+
+    public function show(Photo $photo){
+        $photo = new PhotoResource($photo);
+        return Inertia::render('Photos/PhotoShow', compact('photo'));
+    }
     
 }
