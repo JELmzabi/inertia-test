@@ -17,6 +17,7 @@ class NotificationController extends Controller
 
         $notifications->map(function (Model $notif) {
             $notif->time_ago = $notif->created_at->diffForHumans();
+            $notif->payload = json_decode($notif->payload);
         });
 
         return response()->json($notifications);

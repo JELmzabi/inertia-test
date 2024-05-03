@@ -4,10 +4,10 @@ import snarkdown from 'snarkdown';
 import { computed } from 'vue';
 
 
-const {title, action} = defineProps(['title', 'timeAgo', "action"])
+const {title, action, payload} = defineProps(['title', 'timeAgo', "action", "payload"])
 const formatted_title = snarkdown(title);
-const comp = computed(() => action?.route ? Link : 'div');
-const props = computed(() => comp.value == Link ? {href: route(action.route, action.parameters)}: null);
+const comp = computed(() => action ? Link : 'div');
+const props = computed(() => comp.value == Link ? {href: route(action, payload)}: null);
 
 </script>
 <template>

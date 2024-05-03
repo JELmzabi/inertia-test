@@ -39,7 +39,7 @@ class PhotoController extends Controller
         ]);
 
         $usersShouldBeNotified = $request->user()->followers;
-        Notification::send($usersShouldBeNotified, new NewPostNotification($request->user(), $createdPhoto));
+        Notification::send($usersShouldBeNotified, new NewPostNotification($request->user(), "photos.show", ["id" => $createdPhoto->id]));
 
         return to_route('photos.index');
         
