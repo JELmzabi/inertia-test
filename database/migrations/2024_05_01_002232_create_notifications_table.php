@@ -15,7 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('type');
             $table->morphs('notifiable');
+            $table->nullableMorphs('triggerBy');
             $table->text('data');
+            $table->string('to')->nullable();
+            $table->text('payload')->nullable();
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });

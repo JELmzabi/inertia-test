@@ -6,7 +6,10 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocaleMiddleware;
+use App\Models\User;
+use App\Notifications\UnFollowNotification;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -56,3 +59,9 @@ Route::post('/unfollow', [FollowerController::class, 'unfollow'])->name('unfollo
 
 ## Notifications
 Route::get('/notifications', [NotificationController::class, 'index'])->name('getNotifications');
+
+
+Route::get('test', function(Request $request){
+
+    $request->user()->notify(new UnFollowNotification(User::find(2), 'index.show', ["id" => "jawada"]));
+});
