@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
 
 class NotificationController extends Controller
 {
@@ -15,10 +14,10 @@ class NotificationController extends Controller
     {
         $notifications = $request->user()->notifications;
 
-        $notifications->map(function (Model $notif) {
-            $notif->time_ago = $notif->created_at->diffForHumans();
-            $notif->payload = json_decode($notif->payload);
-        });
+        // $notifications->map(function (Model $notif) {
+        //     $notif->time_ago = $notif->created_at->diffForHumans();
+        //     // $notif->payload = json_decode($notif->payload);
+        // });
 
         return response()->json($notifications);
     }
