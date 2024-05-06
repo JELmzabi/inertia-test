@@ -20,6 +20,8 @@
     "dependencies": {
         "@vueuse/components": "^10.9.0",
         "@vueuse/core": "^10.9.0",
+        "laravel-echo": "^1.16.1",
+        "pusher-js": "^8.4.0-rc2",
         "snarkdown": "^2.0.0"
     }
 }

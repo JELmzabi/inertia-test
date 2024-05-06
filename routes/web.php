@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocaleMiddleware;
 use App\Models\User;
+use App\Notifications\TestNotification;
 use App\Notifications\UnFollowNotification;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -62,6 +63,9 @@ Route::get('/notifications', [NotificationController::class, 'index'])->name('ge
 
 
 Route::get('test', function(Request $request){
+    // $request->user()->notify(new TestNotification());
 
-    $request->user()->notify(new UnFollowNotification(User::find(2), 'index.show', ["id" => "jawada"]));
+    putenv('WORKING_TIME=18');
+    
+    return back();
 });
